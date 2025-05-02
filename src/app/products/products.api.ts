@@ -23,7 +23,7 @@ export async function createProduct(productData: any) {
     console.log(data)
 }
 
-
+ 
 export async function deleteProduct(id: string) {
     const res = await fetch(`http://localhost:4000/api/products/${id}`, {
         method: 'DELETE',

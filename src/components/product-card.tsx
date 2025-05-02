@@ -30,10 +30,13 @@ export function ProductCard({ product }: any) {
                 <img src={product.image} alt="" />
                 <p>{product.description}</p>
                 <CardFooter className="flex justify-between">
-                    <Button className="mt-5">
-                        Buy
+                    <Button className="mt-5 cursor-pointer" onClick={(e) => {
+                        e.stopPropagation()
+                        router.push(`/products/${product.id}/edit`)
+                    }}>
+                        Edit
                     </Button>
-                    <Button className="mt-5" variant='destructive' onClick={() => handleRemoveProduct(product.id)}>
+                    <Button className="mt-5 cursor-pointer" variant='destructive' onClick={() => handleRemoveProduct(product.id)}>
                         Delete
                     </Button>
                 </CardFooter>

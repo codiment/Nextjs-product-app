@@ -3,7 +3,13 @@ import { getProduct } from "../products.api";
 import { buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
 
-async function ProductDetailPage({ params }: { params: { id: string } }) {
+interface Props {
+    params : {
+        id : string
+    }
+}
+
+async function ProductDetailPage( { params } : Props ) {
 
     const resolvedParams = await params
     const product = await getProduct(resolvedParams.id)

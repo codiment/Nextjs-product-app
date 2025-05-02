@@ -15,10 +15,12 @@ async function HomePage() {
     <>
       <div className="flex justify-between">
         <h1 className="text-4xl font-bold">NextNestApp</h1>
+       
 
-        <Link href='/products/new' className={buttonVariants()}>
+          <Link href='/products/new' className={buttonVariants()}>
           Create Product
-        </Link>
+          </Link>
+        
       </div>
       <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-4">
         {
