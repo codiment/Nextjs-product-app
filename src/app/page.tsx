@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { getProducts } from "./products/products.api";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ProductCard } from "@/components/product-card";
+
 
 export const dinamic = 'force-dynamic';
 
@@ -19,26 +20,10 @@ async function HomePage() {
           Create Product
         </Link>
       </div>
-      <div className="grid grid-cols-4 gap-3">
+      <div className="grid gap-3 sm:grid-cols-3 xl:grid-cols-4">
         {
           products.map((product: { id: number, name: string, description: string, price: number, image: string }) => (
-            <Card key={product.id}>
-              <CardHeader>
-                <CardTitle className="flex justify-between">
-                  {product.name}
-                  <span className="text-sm font-bold text-gray-500">
-                    {product.price}
-                  </span>
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <img src={product.image} alt="" />
-                <p>{product.description}</p>
-                <Button>
-                  Buy
-                </Button>
-              </CardContent>
-            </Card>
+            <ProductCard key={product.id} product={product} />
           ))
         }
       </div>
