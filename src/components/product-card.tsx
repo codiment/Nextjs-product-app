@@ -8,7 +8,7 @@ export function ProductCard({ product }: any) {
 
     const router = useRouter()
 
-    async function handleRemoveProduct(id : string) {
+    async function handleRemoveProduct(id: string) {
         console.log(id)
         await deleteProduct(id)
         router.refresh()
@@ -36,7 +36,10 @@ export function ProductCard({ product }: any) {
                     }}>
                         Edit
                     </Button>
-                    <Button className="mt-5 cursor-pointer" variant='destructive' onClick={() => handleRemoveProduct(product.id)}>
+                    <Button className="mt-5 cursor-pointer" variant='destructive' onClick={(e) => {
+                        e.stopPropagation()
+                        handleRemoveProduct(product.id)
+                    }}>
                         Delete
                     </Button>
                 </CardFooter>

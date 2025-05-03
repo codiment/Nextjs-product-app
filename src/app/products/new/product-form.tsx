@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@radix-ui/react-label";
 import { useForm } from "react-hook-form";
-import { createProduct } from "../products.api";
+import { createProduct, updateProduct } from "../products.api";
 import { useParams, useRouter } from "next/navigation";
 
 
@@ -21,13 +21,21 @@ export function ProductForm({ product } : any) {
     })
 
     const router = useRouter()
-    const params = useParams()
+    const params = useParams<{id : string}>()
 
     const onSubmit = handleSubmit(async (data) => {
-        await createProduct({
-            ...data,
-            price: parseFloat(data.price),
-        })
+        
+        if (params.id) {
+            await updateProduct(params.id, {
+                ...data,
+                price: parseFloat(data.price)
+            })
+        } else {
+            await createProduct({
+                ...data,
+               price: parseFloat(data.price)
+            })
+        }
 
         router.push('/')
         router.refresh()
